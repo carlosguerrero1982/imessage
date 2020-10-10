@@ -2,12 +2,12 @@ import { Avatar } from '@material-ui/core';
 import React from 'react';
 import './Sidebar.css';
 import SearchIcon from '@material-ui/icons/Search';
+import RateReviewOutlinedIcon from '@material-ui/icons/RateReviewOutlined';
 
 function Sidebar() {
     return (
         <div className="sidebar">
-            <h2>Sidebar</h2>
-
+           
             <div className="sidebar_header">
 
             <Avatar />
@@ -20,6 +20,8 @@ function Sidebar() {
                 <input type="text" placeholder="Search" />
             
              </div>
+
+             <RateReviewOutlinedIcon />
 
             </div>
 
