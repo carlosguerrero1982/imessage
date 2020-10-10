@@ -1,8 +1,9 @@
-import { Avatar } from '@material-ui/core';
+import { Avatar,IconButton } from '@material-ui/core';
 import React from 'react';
-import './Sidebar.css';
+import './sidebar.css';
 import SearchIcon from '@material-ui/icons/Search';
 import RateReviewOutlinedIcon from '@material-ui/icons/RateReviewOutlined';
+import SidebarChat from './SidebarChat';
 
 function Sidebar() {
     return (
@@ -10,28 +11,32 @@ function Sidebar() {
            
             <div className="sidebar_header">
 
-            <Avatar />
+            <Avatar className="sidebar_avatar" />
             
-            <div className="input">
-
-
-                < SearchIcon />
+            <div className="sidebar_input">
+            
+                 < SearchIcon />
 
                 <input type="text" placeholder="Search" />
             
              </div>
 
+            <IconButton variant ="outlined" className="inputButton">
              <RateReviewOutlinedIcon />
+             </IconButton>
 
             </div>
 
-            <div className="sidebar_chat">
+            <div className="sidebar_chats">
 
+            <SidebarChat />
+            <SidebarChat />
+            <SidebarChat />
 
             </div>
             
         </div>
-    )
+    );
 }
 
 export default Sidebar
