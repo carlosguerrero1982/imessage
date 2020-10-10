@@ -2,6 +2,8 @@ import { IconButton } from '@material-ui/core';
 import React,{useState} from 'react';
 import './Chat.css';
 import MicNoneIcon from '@material-ui/icons/MicNone';
+import { logout } from './features/userSlice';
+import { auth } from './firebase';
 
 function Chat() {
 
@@ -15,7 +17,9 @@ function Chat() {
 
 
             setInput('');
-    }
+    };
+
+    
 
 
     return (
@@ -35,6 +39,7 @@ function Chat() {
                 <h2>messages</h2>
                 <h2>messages</h2>
                 
+              
 
              </div>
 
