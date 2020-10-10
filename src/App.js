@@ -10,45 +10,51 @@ import {auth} from './firebase';
 function App() {
 
    const user = useSelector(selectUser);
+   
 
    const dispatch = useDispatch();
 
+  
+    
    useEffect(() => {
      
-     return () => {
-       auth.onAuthStateChanged(authuser =>{
+     auth.onAuthStateChanged((authUser) =>{
 
-        if(authuser){
+        if(authUser){
 
-           dispatch(login({
+           dispatch(
+             
+            login({
 
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email:authUser.email,
+            displayName: authUser.displayName,
 
-
-
-           }))
+           })
+           
+         );
 
         }else{
 
-          dispatch(logout())
+          dispatch(logout());
         }
 
-       })
-     }
-   }, [])
+       });
+
+      
+     
+   }, []);
 
   return (
     <div className="app">
 
-      {user ? (
+      {user ? 
 
-      < Imessage />
-
-      ):(
-
-        < Login />
-      )}
+      < Imessage />: < Login />
+      
+      }
      
-       
 
     </div>
   );
