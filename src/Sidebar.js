@@ -81,7 +81,7 @@ function Sidebar() {
                 {
                     chats.map(({id,data}) =>(
 
-                        <SidebarChat key={data.id} id={data.id}  chatName={data.chatName}/>
+                        <SidebarChat key={id} id={id}  chatName={data.chatName}/>
 
                     ))
                  }

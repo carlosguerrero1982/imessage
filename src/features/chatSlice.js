@@ -10,7 +10,7 @@ export const chatSlice = createSlice({
   reducers: {
     setChat: (state, action) => {
      
-      state.chat.id = action.payload.chatId;
+      state.chaId = action.payload.chatId;
       state.chatName = action.payload.chatName;
     },
 

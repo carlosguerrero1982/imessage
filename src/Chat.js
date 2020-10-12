@@ -5,11 +5,15 @@ import MicNoneIcon from '@material-ui/icons/MicNone';
 import { logout } from './features/userSlice';
 import { auth } from './firebase';
 import Message from './Message';
+import {useSelector} from 'react-redux';
+import { selectChatName } from './features/chatSlice';
 
 function Chat() {
 
 
     const [input, setInput] = useState('');
+
+    const chatName = useSelector(selectChatName);
    
 
     const sendMessage = (e) =>{
@@ -30,7 +34,7 @@ function Chat() {
             <div className="chat_header">  
 
 
-                <h4> <small>To:</small> <span className="chat_name">Channel Names</span> </h4>
+    <h4> <small>To:</small> <span className="chat_name">{chatName}</span> </h4>
                 <strong>Details</strong>
              </div>
 

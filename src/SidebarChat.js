@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core'
-import React from 'react';
+import React,{useState} from 'react';
 import { setChat } from './features/chatSlice';
 import './SidebarChat.css';
 import {useDispatch} from 'react-redux';
@@ -7,6 +7,8 @@ import {useDispatch} from 'react-redux';
 function SidebarChat({id,chatName}) {
 
     const dispatch = useDispatch();
+
+    const [chatInfo, setChatInfo] = useState([]);
 
 
     return (
@@ -16,8 +18,8 @@ function SidebarChat({id,chatName}) {
              
                 setChat({
     
-                id:id,
-                chatName: chatName
+                chatId: id,
+                chatName: chatName,
     
                })
             );
