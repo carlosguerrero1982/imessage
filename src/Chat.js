@@ -4,11 +4,13 @@ import './Chat.css';
 import MicNoneIcon from '@material-ui/icons/MicNone';
 import { logout } from './features/userSlice';
 import { auth } from './firebase';
+import Message from './Message';
 
 function Chat() {
 
 
     const [input, setInput] = useState('');
+   
 
     const sendMessage = (e) =>{
 
@@ -32,14 +34,14 @@ function Chat() {
                 <strong>Details</strong>
              </div>
 
-             <div className="chat_messages">  
+             <div className="chat_messages"> 
+             
+             < Message />
+             < Message />
+             < Message />
+             < Message />
 
-                <h2>messages</h2>
-                <h2>messages</h2>
-                <h2>messages</h2>
-                <h2>messages</h2>
-                
-              
+        
 
              </div>
 

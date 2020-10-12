@@ -4,7 +4,7 @@ import './sidebar.css';
 import SearchIcon from '@material-ui/icons/Search';
 import RateReviewOutlinedIcon from '@material-ui/icons/RateReviewOutlined';
 import SidebarChat from './SidebarChat';
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import {selectUser} from './features/userSlice';
 import db,{ auth } from './firebase';
 
@@ -15,6 +15,8 @@ function Sidebar() {
      const [chats,setChats]  = useState([]);
 
     const user = useSelector(selectUser);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         
@@ -48,6 +50,8 @@ function Sidebar() {
             });
 
         }
+
+        
        
     };
 
@@ -75,9 +79,9 @@ function Sidebar() {
             <div className="sidebar_chats">
 
                 {
-                    chats.map(({id, data:{chatName}}) =>(
+                    chats.map(({id,data}) =>(
 
-                        <SidebarChat key={id} id={id}  chatName={chatName}/>
+                        <SidebarChat key={data.id} id={data.id}  chatName={data.chatName}/>
 
                     ))
                  }
