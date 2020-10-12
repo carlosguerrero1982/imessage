@@ -31,6 +31,7 @@ function SidebarChat({id,chatName}) {
             <div className="sidebarchat_info">
 
                 <h3>{chatName}</h3>
+            
                 <p>Last message...</p>
                 <small>timestamp</small>
 

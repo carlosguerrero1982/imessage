@@ -1,12 +1,14 @@
 import { IconButton } from '@material-ui/core';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './Chat.css';
 import MicNoneIcon from '@material-ui/icons/MicNone';
-import { logout } from './features/userSlice';
-import { auth } from './firebase';
+import { logout, selectUser } from './features/userSlice';
+import db from './firebase';
 import Message from './Message';
 import {useSelector} from 'react-redux';
-import { selectChatName } from './features/chatSlice';
+import { selectChatId, selectChatName } from './features/chatSlice';
+import firebase from 'firebase';    
+
 
 function Chat() {
 
@@ -14,13 +16,51 @@ function Chat() {
     const [input, setInput] = useState('');
 
     const chatName = useSelector(selectChatName);
+    const chatId = useSelector(selectChatId);
+    const user = useSelector(selectUser);
+    
+    const [messages, setMessages] = useState([]);
    
+    useEffect(()=>{
+
+        if(chatId){
+
+           
+
+        db.collection("chats").doc(chatId).collection("messages"). 
+        orderBy('timestamp','desc').onSnapshot(snapshot => {
+        
+        setMessages(snapshot.docs.map(doc=>({
+
+          id:doc.id,
+          data:doc.data()
+            
+
+          })) );
+
+        })
+
+    }
+
+    }, [chatId]);
+    
+
+
 
     const sendMessage = (e) =>{
 
         e.preventDefault();
 
+        db.collection('chats').doc(chatId).collection('messages').add({
 
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            message: input,
+            uid: user.uid,
+            photo:user.photo,
+            email:user.email,
+            displayName: user.displayName
+
+        });
 
             setInput('');
     };
@@ -39,11 +79,20 @@ function Chat() {
              </div>
 
              <div className="chat_messages"> 
+
+   
              
-             < Message />
-             < Message />
-             < Message />
-             < Message />
+             {
+                messages.map(({id, data})=>(
+
+                    < Message key={id} contents={data} />
+
+                )) 
+
+
+             }
+            
+             
 
         
 
